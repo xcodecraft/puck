@@ -41,7 +41,7 @@ function get_online_ver()
     prj=$2
     host=$3
     deploy_to=$4
-    cd $RELEASE_BASEPATH/${prj_group}_pub/$prj
+    cd $RELEASE_BASEPATH/${prj_group}-pub/$prj
     host=`grep "\[$host\]" hosts -A 1|grep -v $host|grep -v grep`
     ssh $host "cat $deploy_to/$prj/version.txt" 2>/dev/null
 }
@@ -54,7 +54,7 @@ function chose_ver()
     else
         cd $RELEASE_BASEPATH/$prj
         #list recent tags
-        tags=(`git tag |tail -n 10|sort -r`)
+        tags=(`git tag |tail -n 10|sort -nr`)
         i=1
         cecho "=== === === === 请选择版本 === === === ===" $c_title
         while [ $i -le ${#tags[@]} ]
