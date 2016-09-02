@@ -5,11 +5,11 @@ function get_group_pub_plan()
     prj_group=$1
     if [ -d $RELEASE_BASEPATH/${prj_group}_pub ]
     then
-        cd $RELEASE_BASEPATH/${prj_group}_pub
+        cd $RELEASE_BASEPATH/${prj_group}-pub
         git pull > /dev/null
     else
         cd $RELEASE_BASEPATH/
-        git clone $DEFAULT_GIT_REPO_BASE${prj_group}_pub > /dev/null
+        git clone $DEFAULT_GIT_REPO_BASE${prj_group}-pub > /dev/null
     fi
 
 }

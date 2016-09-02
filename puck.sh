@@ -63,7 +63,7 @@ source $CUR_DIR/src/scripts/_base.sh
 source $CUR_DIR/src/scripts/_puck.sh
 
 #更新项目组发布计划
-#get_group_pub_plan $prj_group
+get_group_pub_plan $prj_group
 #待发布项目初始化
 init $prj $git_repo
 #选择待发布版本
