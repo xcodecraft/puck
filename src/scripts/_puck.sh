@@ -41,7 +41,7 @@ function get_online_ver()
     prj=$2
     host=$3
     deploy_to=$4
-    cd $RELEASE_BASEPATH/${prj_group}-pub/$prj
+    cd $RELEASE_BASEPATH/${prj_group}-pub/projects/$prj
     host=`grep "\[$host\]" hosts -A 1|grep -v $host|grep -v grep`
     ssh $host "cat $deploy_to/$prj/version.txt" 2>/dev/null
 }
