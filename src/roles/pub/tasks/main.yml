@@ -1,0 +1,12 @@
+---
+- include: setup.yml
+
+- include: update-code.yml
+
+- include: symlink.yml
+
+- include: start.yml
+
+
+#- include: cleanup.yml
+

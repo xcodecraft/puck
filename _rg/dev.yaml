@@ -1,0 +1,9 @@
+_dev:
+    - !C.project
+        name : "puck"
+        root : "${HOME}/devspace/puck"
+    - !C.version
+        file : "./version.txt"
+    - !C.git
+        remote : "git@git.1360.com:game/puck"
+

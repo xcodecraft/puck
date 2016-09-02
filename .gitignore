@@ -1,0 +1,8 @@
+run
+*.log
+*.swp
+*.swo
+used
+test/reports
+*.data
+*.retry

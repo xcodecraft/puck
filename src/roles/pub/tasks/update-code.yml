@@ -1,0 +1,10 @@
+---
+# Update code deployment step
+- name:  Get release path
+  command: echo "{{ deploy_to }}/pkgs/{{ deploy_name }}"
+  register: release_path
+
+- name: extract pkgs
+  unarchive: src={{ local_path}}/pkgs/{{project_name}}/{{ project_version }}.tgz dest={{ release_path.stdout }}/{{ project_version }}/ copy=yes
+  become: yes
+  become_user: "{{ remote_user }}"

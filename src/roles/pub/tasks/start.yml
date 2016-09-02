@@ -1,0 +1,14 @@
+# control the project
+# may reload the nginx or reload some service
+---
+- name: rigger conf
+  command:   /data/x/tools/rigger-ng/rg {{ rg_opt }} chdir={{ deploy_to }}/{{ deploy_name }}
+  become:  true
+  when: rg_opt is defined and rg_opt != ''
+
+- name: rigger start
+  command:   /data/x/tools/rigger-ng/rg {{ after_rg }} chdir={{ deploy_to }}/{{ deploy_name }}
+  become:  true
+  when: after_rg is defined and after_rg  != ''
+
+

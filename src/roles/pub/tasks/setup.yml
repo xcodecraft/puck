@@ -1,0 +1,24 @@
+---
+# Prepare folders
+- stat: path={{ deploy_to }}
+  register: st
+
+- name:  Ensure deployment base path exists
+  file: state=directory recurse=no path={{ deploy_to }} owner={{remote_user}} group={{remote_user}}
+  when: st.stat.atime is not defined
+
+- stat: path={{ deploy_to }}/pkgs/{{ deploy_name }}
+  register: st
+
+- name:  Ensure project folder exists
+  file: state=directory recurse=yes path={{ deploy_to }}/pkgs/{{ deploy_name }}  owner={{remote_user}} group={{remote_user}}
+  become: yes
+  when: st.stat.atime is not defined
+
+- stat: path={{ deploy_to }}/pkgs/{{ deploy_name }}/{{ project_version}}
+  register: st
+
+- name:  Ensure each project version folder exists
+  file: state=directory recurse=yes path={{ deploy_to }}/pkgs/{{ deploy_name }}/{{ project_version}}  owner={{remote_user}} group={{remote_user}}
+  become: yes
+  when: st.stat.atime is not defined

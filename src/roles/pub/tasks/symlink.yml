@@ -1,0 +1,33 @@
+---
+# Performs symlink exchange
+- stat: path={{ deploy_to }}/{{ deploy_name }}
+  become: yes
+  become_user: "{{remote_user}}"
+  register: st
+- name: execute *before rg *
+  command: /usr/bin/python  /data/x/tools/rigger-ng/rg {{ before_rg }} chdir={{ deploy_to }}/{{ deploy_name }}
+  become: yes
+  when: st.stat.islnk is defined and  before_rg is defined and before_rg != ''
+
+- name: Change softlink to new release
+  file: state=link path={{ deploy_to }}/{{ deploy_name }} src="{{ release_path.stdout }}/{{ project_version }}" owner={{remote_user}} group={{remote_user}}
+  become: yes
+  when: export_path is not defined
+
+
+- name: Change softlink to specific_path
+  file: state=link path={{ deploy_to }}/{{ deploy_name }} src="{{ release_path.stdout }}/{{ project_version }}/{{ export_path }}"
+  become: yes
+  become_user: "{{remote_user}}"
+  when: export_path is defined and export_path !=''
+
+- name: execute shell command *after cmd*
+  command: /bin/sh  {{ after_cmd }} chdir="{{ deploy_to }}/{{ deploy_name }}"
+  become: yes
+  when: after_cmd is defined and after_cmd != ''
+
+
+- name: execute  after_rg
+  command: /usr/bin/python  /data/x/tools/rigger-ng/rg {{ after_rg }} chdir={{ deploy_to }}/{{ deploy_name }}
+  become: yes
+  when: after_rg is defined and after_rg != ''

@@ -1,0 +1,8 @@
+---
+- hosts: dev
+  remote_user: '{{ user }}'
+  tasks:
+  - name: deliver authorized_keys
+    authorized_key:
+        user: '{{ user }}'
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

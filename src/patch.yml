@@ -1,0 +1,9 @@
+- name:  部署项目的基本配置， 轻易不要修改
+  hosts: '{{ host }}'
+  remote_user: '{{ user }}'
+  gather_facts: no
+  vars:
+    keep_releases: 2
+
+  roles:
+    - { role: patch }

@@ -1,0 +1,33 @@
+---
+# Update code deployment step
+- name:  Define release path
+  command: echo "{{ deploy_to }}/{{ deploy_name }}"
+  register: release_path
+  delegate_to: 127.0.0.1
+  run_once: true
+
+- name:  Define local patch path
+  command: echo "{{ local_path }}/patches/{{ project_name }}"
+  register: local_patch_path
+  delegate_to: 127.0.0.1
+  run_once: true
+
+- name:  Get patch file
+  command: cat "{{ local_path }}/patches/{{ project_name }}/bk.{{online_version}}-{{project_version}}.txt"
+  register: bk_files
+  delegate_to: 127.0.0.1
+  run_once: true
+
+- name: Make sure patch dir exists
+  file: state=directory recurse=yes path={{ deploy_to }}/patches/  owner={{remote_user}} group={{remote_user}}
+  become: yes
+
+- name:  bk online  files
+  command: tar -czvf {{deploy_to}}/patches/bk.{{project_name}}.{{online_version}}-{{project_version}}.tgz -C {{release_path.stdout}}/ {{bk_files.stdout}}
+  become: yes
+  become_user: "{{remote_user}}"
+
+- name: extract pkgs
+  unarchive: src={{ local_patch_path.stdout}}/patch.{{ online_version }}-{{project_version}}.tgz dest={{ release_path.stdout }}/ copy=yes
+  become: yes
+  become_user: "{{remote_user}}"

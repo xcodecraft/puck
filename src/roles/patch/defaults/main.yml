@@ -1,0 +1,8 @@
+---
+# Path where the code must be deployed to
+deploy_to: "/tmp/"
+deploy_name : "{{project_name}}"
+local_path: "/home/{{ user }}/release/"
+keep_releases: 10
+
+
