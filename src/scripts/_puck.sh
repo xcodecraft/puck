@@ -3,7 +3,7 @@
 function get_group_pub_plan()
 {
     prj_group=$1
-    if [ -d $RELEASE_BASEPATH/${prj_group}_pub ]
+    if [ -d $RELEASE_BASEPATH/${prj_group}-pub ]
     then
         cd $RELEASE_BASEPATH/${prj_group}-pub
         git pull > /dev/null
