@@ -1,5 +1,5 @@
 #!/bin/bash
-DEFAULT_DEPLOY_DIR="/home/q/system"
+DEFAULT_DEPLOY_DIR="/data/x/projects/"
 DEFAULT_GIT_REPO_BASE="git@git.mararun.cn:mara/"
 DEFAULT_REMOTE_USER="mara"
 DEFAULT_PRJ_GROUP="mara"
