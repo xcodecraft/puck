@@ -88,12 +88,12 @@ puck-init --prj prj --host host_list(dev|online)
 * prj 项目名称
 * host_list hosts文件中定义的主机组
 
-###添加alias到bashrc
+### 添加alias到bashrc
 ```shell
 cat /home/q/tools/puck/bashrc >> ~/.bashrc
 ```
 
-##日常使用
+## 日常使用
 ```
 puck [--prj_group prj_group] --prj prj [--tag project_tag] [--dest deploy_dir] [--git git_repo] --host host_list(dev|demo|online...) [-f]
 ```
@@ -106,7 +106,7 @@ puck [--prj_group prj_group] --prj prj [--tag project_tag] [--dest deploy_dir] [
 * f： 强制全量更新
 
 
-#补充说明
+# 补充说明
 
 ## 所有prj_group共用默认配置文件
 cat conf.sh
