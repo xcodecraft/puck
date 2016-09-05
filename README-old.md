@@ -105,7 +105,9 @@ puck [--prj_group prj_group] --prj prj [--tag project_tag] [--dest deploy_dir] [
 * host：发布计划中的主机组
 * f： 强制全量更新
 
+
 #补充说明
+
 ## 所有prj_group共用默认配置文件
 cat conf.sh
 
