@@ -113,12 +113,12 @@ cat conf.sh
 
 ```
 #!/bin/bash
-DEFAULT_DEPLOY_DIR="/data/x/projects"
-DEFAULT_GIT_REPO_BASE="git@github.com:xcodecraft/"
-DEFAULT_REMOTE_USER="xxx"
-DEFAULT_PRJ_GROUP="xxx"
-PATCH_BASEPATH=$HOME/release/patches
-RELEASE_BASEPATH=$HOME/release
+DEFAULT_DEPLOY_DIR="/data/x/projects"  #发布到目标机的文件夹
+DEFAULT_GIT_REPO_BASE="git@github.com:xcodecraft/"  #git仓库根路径，默认情况下，据$DEFAULT_GIT_REPO_BASE$prj clone工程
+DEFAULT_REMOTE_USER="xxx"  #主要影响文件所主
+DEFAULT_PRJ_GROUP="xxx" #默认prj_group
+PATCH_BASEPATH=$HOME/release/patches #发布过程中，patch文件存储路径
+RELEASE_BASEPATH=$HOME/release #发布过程中，临时文件存放路径
 ```
 
 ## git_repo
