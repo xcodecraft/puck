@@ -88,17 +88,6 @@ then
 else
     need_pub=2
 fi
-if [ $need_pub = 2 ]
-then
-    echo $(tput setaf 2) "---> 有系统资源变更，推荐全量发布 -----"
-else if [ $need_pub = 1 ]
-then
-    echo $(tput setaf 2) "---> 无系统资源变更，推荐增量发布 -----"
-else
-    echo $(tput setaf 2) "---> 无代码变化，Do nothing -----"
-    exit 0;
-fi
-#TBD
 cd $CUR_DIR
 export CRYPTOGRAPHY_ALLOW_OPENSSL_098=1
 if [ $need_pub = 2 ]
@@ -111,4 +100,6 @@ then
     mk_patch $prj $online_ver $new_ver
     echo $(tput setaf 2) "---> PATCH -----"
     bash ${CUR_DIR}/_patch.sh --prj_group $prj_group  --prj $prj --online_tag $online_ver --tag $NEW_VER --host $host_list --deploy_to $deploy_to
+else
+    echo $(tput setaf 2) "---> Do nothing -----"
 fi
