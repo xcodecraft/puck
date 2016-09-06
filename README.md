@@ -35,6 +35,7 @@
 新增加$prj_group时，创建一个新的git仓库:${prj_group}-pub
 新增加项目$prj时，在对应${prj_group}-pub工程中：
    mkdir -p projects/$prj
+   cd projects/$prj
    touch hosts vars.yml
 ```
 
