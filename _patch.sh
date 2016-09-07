@@ -55,7 +55,7 @@ echo $(tput setaf 2) "---> 开始更新项目：" $(tput setaf 5) $project_name
 echo $(tput setaf 2) "---> 线上版本号：" $(tput setaf 5) $online_tag
 echo $(tput setaf 2) "---> 待更新版本号：" $(tput setaf 5) $project_tag
 echo $(tput setaf 2) "---> 机器列表：" $(tput setaf 5) $host_list
-pub_plan_path=$RELEASE_BASEPATH/${prj_group}_pub/${project_name}
+pub_plan_path=$RELEASE_BASEPATH/${prj_group}-pub/projects/${project_name}
 extend_vars=`cat ${pub_plan_path}/vars.yml 2>/dev/null|wc -l`
 if [ $extend_vars -gt 0 ]
 then
