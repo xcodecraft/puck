@@ -21,10 +21,10 @@ function _get_project()
     if [ -d $RELEASE_BASEPATH/$prj ]
     then
         cd $RELEASE_BASEPATH/$prj
-        git fetch
+        git pull > /dev/null
     else
         cd $RELEASE_BASEPATH/
-        git clone $git
+        git clone $git  > /dev/null
     fi
 }
 function init()
@@ -55,7 +55,7 @@ function chose_ver()
     else
         cd $RELEASE_BASEPATH/$prj
         #list recent tags
-        tags=(`git tag |tail -n 10|sort -nr`)
+        tags=(`git tag --sort -version:refname|head -n 10`)
         i=1
         cecho "=== === === === 请选择版本 === === === ===" $c_title
         while [ $i -le ${#tags[@]} ]
