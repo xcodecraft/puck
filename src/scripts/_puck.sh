@@ -125,7 +125,7 @@ function _patch_or_pub()
     done
     deploy_confirm "确认文件列表？"
     if [ 1 != $? ]; then
-        return -1;#cacel deployment
+        return 255;#cacel deployment
     fi
 
     deploy_confirm "是否进行文件diff展示 ？"
@@ -148,7 +148,7 @@ function _patch_or_pub()
             vimdiff $new_ver/$file $online_ver/$file
             deploy_confirm "	修改确认 $file ?"
             if [ 1 != $? ]; then
-                return -1;#cacel deployment
+                return 255;#cacel deployment
             fi
         done
     fi
@@ -162,7 +162,7 @@ function _patch_or_pub()
         return 2;
     fi
 }
-## 0: no difference; -1: cacel; 1:has difference,should patch; 2: should pub
+## 0: no difference; 255: cacel; 1:has difference,should patch; 2: should pub
 function diff_vers()
 {
     prj=$1
