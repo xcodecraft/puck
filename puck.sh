@@ -92,14 +92,12 @@ cd $CUR_DIR
 export CRYPTOGRAPHY_ALLOW_OPENSSL_098=1
 if [ $need_pub = 2 ]
 then
-    mk_pub $prj $NEW_VER
     echo $(tput setaf 2) "---> PUB -----"
+    mk_pub $prj $NEW_VER
     bash ${CUR_DIR}/_pub.sh --prj_group $prj_group --prj $prj --tag $NEW_VER --host $host_list --deploy_to $deploy_to
 elif [ $need_pub = 1 ]
 then
-    mk_patch $prj $online_ver $new_ver
     echo $(tput setaf 2) "---> PATCH -----"
+    mk_patch $prj $online_ver $new_ver
     bash ${CUR_DIR}/_patch.sh --prj_group $prj_group  --prj $prj --online_tag $online_ver --tag $NEW_VER --host $host_list --deploy_to $deploy_to
-else
-    echo $(tput setaf 2) "---> Do nothing -----"
 fi

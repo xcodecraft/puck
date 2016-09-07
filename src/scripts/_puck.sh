@@ -3,6 +3,7 @@
 function get_group_pub_plan()
 {
     prj_group=$1
+    mkdir -p $RELEASE_BASEPATH
     if [ -d $RELEASE_BASEPATH/${prj_group}-pub ]
     then
         cd $RELEASE_BASEPATH/${prj_group}-pub
@@ -182,7 +183,25 @@ function diff_vers()
     cd $prj_path
     _diff
     _patch_or_pub
-    return $?
+    need_pub=$?
+    if [ $need_pub = 2 ]
+    then
+        echo $(tput setaf 2) "---> 涉及资源文件变更，推荐全量更新 -----"
+        deploy_confirm "全量更新，重启服务？"
+        if [ 1 != $? ]; then
+            need_pub=1
+        fi
+    elif [ $need_pub = 1 ]
+    then
+        echo $(tput setaf 2) "---> 不涉及资源文件变更，推荐增量更新 -----"
+        deploy_confirm "增量更新，不重启服务？"
+        if [ 1 != $? ]; then
+            need_pub=2
+        fi
+    else
+        echo $(tput setaf 2) "---> Do nothing -----"
+    fi
+    return $need_pub
 }
 function mk_patch()
 {
